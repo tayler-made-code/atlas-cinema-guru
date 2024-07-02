@@ -1,24 +1,40 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userUsername, setUserUsername] = useState('');
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    
+    if (accessToken) {
+      fetch('/api/auth/', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        setIsLoggedIn(true);
+        setUserUsername(data.username);
+      })
+      .catch(error => {
+        console.error('Authentication error:', error);
+        setIsLoggedIn(false);
+      });
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src="" className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isLoggedIn ? (
+        <Dashboard />
+      ) : (
+        <Authentication />
+      )}
     </div>
   );
 }
-
-export default App;
