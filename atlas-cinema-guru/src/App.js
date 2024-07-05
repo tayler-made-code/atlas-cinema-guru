@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Authentication from './routes/auth/Authentication';
+import Dashboard from './routes/dashboard/Dashboard';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userUsername, setUserUsername] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [userUsername, setUserUsername] = useState('testUser');
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
@@ -19,7 +21,7 @@ export default function App() {
       .then(response => response.json())
       .then(data => {
         setIsLoggedIn(true);
-        setUserUsername(data.username);
+        setUserUsername(data.userName);
       })
       .catch(error => {
         console.error('Authentication error:', error);
@@ -30,10 +32,11 @@ export default function App() {
 
   return (
     <div className="App">
+      
       {isLoggedIn ? (
         <Dashboard />
       ) : (
-        <Authentication />
+        <Authentication setIsLoggedIn={setIsLoggedIn} setUserUsername={setUserUsername} />
       )}
     </div>
   );

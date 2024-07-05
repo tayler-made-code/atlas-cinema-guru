@@ -1,0 +1,37 @@
+/* Authentication Page Styles */
+
+body {
+  background-color: #222222;
+}
+
+.auth-form {
+  background-color: #FFFFFF;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  margin-top: 20%;
+  max-width: 22rem;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: .7rem;
+}
+
+/* Login & Register Styles */
+
+.auth-buttons button {
+  margin-bottom: 2rem;
+  padding: .5rem 4.11rem;
+}
+
+.submit-button {
+  position: relative;
+  padding: .5rem 1rem;
+  margin-bottom: 1rem;
+  left: 6.5rem;
+}
+
+.submit-button:hover {
+  background-color: #E31C25;
+}

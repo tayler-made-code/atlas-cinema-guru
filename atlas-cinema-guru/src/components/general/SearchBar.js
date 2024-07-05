@@ -1,5 +1,7 @@
 import React from 'react';
 import './general.css';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function SearchBar({ title, setTitle }) {
@@ -12,6 +14,7 @@ export default function SearchBar({ title, setTitle }) {
       type="text"
       value={title}
       onChange={handleInput}
+      icon={<FontAwesomeIcon icon={faSearch} style={{color: "#d3d6db",}} />}
     />
   );
 }

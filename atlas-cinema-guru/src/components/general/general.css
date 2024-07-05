@@ -1,0 +1,55 @@
+/* Button */
+
+button {
+  background-color: #BB000E;
+  color: #FFFFFF;
+  border: 0;
+}
+
+button.active {
+  background-color: #E31C25;
+}
+
+/* button:hover {
+  background-color: #E31C25;
+} */
+
+button .svg-inline--fa {
+  margin-right: 0.5rem;
+  color: #d3d6db;
+}
+
+/* Input */
+
+input {
+  padding: .5rem;
+  border: 0;
+  border-bottom: 1px solid #E31C25;
+  outline: none; /* removes the glow when focused */
+  margin-bottom: 2rem;
+}
+
+/* .input-container {
+  display: flex;
+  flex-direction: column;
+} */
+
+.input-container label {
+  font-size: .7rem;
+  position: relative;
+  right: 5.5rem;
+  top: .2rem;
+}
+
+.input-wrapper .svg-inline--fa {
+  position: relative;
+  bottom: 1.2rem;
+  left: 1rem;
+}
+
+/* SearchBar */
+
+
+
+/* SelectInput */
+
