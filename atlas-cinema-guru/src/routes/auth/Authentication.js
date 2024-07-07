@@ -7,23 +7,28 @@ import axios from 'axios';
 
 export default function Authentication({ setIsLoggedIn, setUserUsername }) {
   const [ _switch, setSwitch ] = useState(true);
-  const [ userName, setUsername ] = useState('');
+  const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form Submit Started:', { username, password });
 
     try {
       let response;
       if (_switch) {
-        response = await axios.post('/api/auth/login', { userName, password });
+        console.log('In Login Section');
+        response = await axios.post('http://localhost:8000/api/auth/login', { username, password });
       } else {
-        response = await axios.post('/api/auth/register', { userName, password });
+        console.log('In Register Section');
+        response = await axios.post('http://localhost:8000/api/auth/register', { username, password });
       }
+
+      console.log('Response: ', response.data);
 
       const { token } = response.data;
       localStorage.setItem('accessToken', token);
-      setUserUsername(userName);
+      setUserUsername(username);
       setIsLoggedIn(true);  
     } catch (error) {
       console.error('Authentication error:', error);
@@ -32,34 +37,38 @@ export default function Authentication({ setIsLoggedIn, setUserUsername }) {
   };
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
+    <div className="auth-container">
       <div className = "auth-buttons">
         <Button
           label="Sign In"
+          type="button"
           onClick={() => setSwitch(true)}
           className={_switch ? 'active' : ''}
         />
         <Button
           label="Sign Up"
+          type="button"
           onClick={() => setSwitch(false)}
           className={!_switch ? 'active' : ''}
         />
       </div>
-      {_switch ? (
-        <Login
-          username={userName}
-          password={password}
-          setUsername={setUsername}
-          setPassword={setPassword}
-        />
-      ) : (
-        <Register
-          username={userName}
-          password={password}
-          setUsername={setUsername}
-          setPassword={setPassword}
-        />
-      )}
-    </form>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        {_switch ? (
+          <Login
+            username={username}
+            password={password}
+            setUsername={setUsername}
+            setPassword={setPassword}
+          />
+        ) : (
+          <Register
+            username={username}
+            password={password}
+            setUsername={setUsername}
+            setPassword={setPassword}
+          />
+        )}
+      </form>
+    </div>
   );
 }

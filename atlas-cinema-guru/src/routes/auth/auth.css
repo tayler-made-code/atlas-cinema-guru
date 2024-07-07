@@ -4,13 +4,12 @@ body {
   background-color: #222222;
 }
 
-.auth-form {
+.auth-container {
   background-color: #FFFFFF;
+  max-width: 22rem;
+  margin: 22.5% auto;
   width: 50%;
   height: 50%;
-  margin: auto;
-  margin-top: 20%;
-  max-width: 22rem;
 }
 
 h1 {

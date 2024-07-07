@@ -6,10 +6,6 @@ import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Login({ userName, password, setUsername, setPassword }) {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div className="login-form">
       <h1>Sign in with your account</h1>
@@ -32,9 +28,8 @@ export default function Login({ userName, password, setUsername, setPassword }) 
         inputAttributes={{ size: 40 }}
       />
       <Button
-        label="Sign in"
+        label="Submit"
         className="submit-button"
-        onClick={handleSubmit}
         icon={<FontAwesomeIcon icon={faKey} style={{color: "#d3d6db",}} />}
       />
     </div>

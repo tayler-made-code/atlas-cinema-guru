@@ -4,14 +4,15 @@ import Authentication from './routes/auth/Authentication';
 import Dashboard from './routes/dashboard/Dashboard';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [userUsername, setUserUsername] = useState('testUser');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userUsername, setUserUsername] = useState('');
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     
     if (accessToken) {
-      fetch('/api/auth/', {
+      console.log('Access token found:', accessToken);
+      fetch('http://localhost:8000/api/auth/verify', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -20,6 +21,7 @@ export default function App() {
       })
       .then(response => response.json())
       .then(data => {
+        console.log('Verification response:', data);
         setIsLoggedIn(true);
         setUserUsername(data.userName);
       })
@@ -27,6 +29,8 @@ export default function App() {
         console.error('Authentication error:', error);
         setIsLoggedIn(false);
       });
+    } else {
+      console.log('No access token found');
     }
   }, []);
 
@@ -34,7 +38,7 @@ export default function App() {
     <div className="App">
       
       {isLoggedIn ? (
-        <Dashboard />
+        <Dashboard userUsername={userUsername} setIsLoggedIn={setIsLoggedIn}/>
       ) : (
         <Authentication setIsLoggedIn={setIsLoggedIn} setUserUsername={setUserUsername} />
       )}

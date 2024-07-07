@@ -6,24 +6,22 @@ import { faUser, faKey, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Register({ userName, password, setUsername, setPassword }) {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div className="register-form">
       <h1>Create a new account</h1>
       <Input
-        label="Username"
+        label="Username:"
         type="text"
+        className="username-input"
         value={userName}
         setValue={setUsername}
         icon={<FontAwesomeIcon icon={faUser} style={{color: "#d3d6db",}} />}
         inputAttributes={{ size: 40 }}
       />
       <Input
-        label="Password"
+        label="Password:"
         type="password"
+        className="password-input"
         value={password}
         setValue={setPassword}
         icon={<FontAwesomeIcon icon={faKey} style={{color: "#d3d6db",}} />}
@@ -32,7 +30,6 @@ export default function Register({ userName, password, setUsername, setPassword 
       <Button
         label="Sign up"
         className="submit-button"
-        onClick={handleSubmit}
         icon={<FontAwesomeIcon icon={faPlus} style={{color: "#d3d6db",}} />}
       />
     </div>

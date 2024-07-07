@@ -11,12 +11,17 @@ export default function Header({ userUsername, setIsLoggedIn }) {
 
   return (
     <nav>
-      <img src="https://picsum.photos/100/100" alt="avatar"></img>
-      <p>Welcome, {userUsername}!</p>
-      <span className="sign-out-icon" onClick={logout}>
-        <FontAwesomeIcon icon={faSignOutAlt} style={{color: "#E31C25",}} />
-        <p>Logout</p>
+      <div className="title-div">
+        <p className="title">Cinema Guru</p>
+      </div>
+      <div className="user-logout">
+        <img src="https://picsum.photos/100/100" alt="avatar"></img>
+        <p>Welcome, {userUsername}!</p>
+        <span className="sign-out-icon" onClick={logout}>
+          <FontAwesomeIcon icon={faSignOutAlt} style={{color: "#E31C25",}} />
+          <p>Logout</p>
       </span>
+      </div>
     </nav>
   );
 }

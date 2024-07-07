@@ -4,21 +4,31 @@ nav {
   background-color: #161616;
   color: #FFFFFF;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
 }
 
 nav img {
   border-radius: 100%;
   border: 2px solid #E31C25;
-  max-width: 2.5rem;
+  max-width: 2rem;
   margin: .5rem;
 }
 
 .sign-out-icon {
-  margin-right: 1rem;
+  margin-right: 2.5rem;
   display: flex;
   align-items: center;
   color: #E31C25;
+}
+
+.user-logout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title-div {
+  margin-left: 2.5rem;;
 }
