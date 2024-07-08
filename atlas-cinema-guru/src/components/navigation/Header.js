@@ -10,7 +10,7 @@ export default function Header({ userUsername, setIsLoggedIn }) {
   };
 
   return (
-    <nav>
+    <nav className="top-header">
       <div className="title-div">
         <p className="title">Cinema Guru</p>
       </div>
