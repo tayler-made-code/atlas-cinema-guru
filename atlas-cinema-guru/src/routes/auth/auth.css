@@ -14,7 +14,9 @@ body {
 
 h1 {
   font-family: 'Roboto', sans-serif !important;
-  font-size: .7rem !important;
+  font-size: 1rem !important;
+  margin-bottom: 1.5rem;
+  font-weight: 100;
 }
 
 /* Login & Register Styles */
@@ -32,11 +34,23 @@ h1 {
 }
 
 .submit-button:hover {
-  background-color: #E31C25 !important;
+  background-color: #E31C25;
 }
 
 .username-input, .password-input {
   background-color: #FFFFFF !important;
-  color: #000000;
+  color: #000000 !important;
 }
 
+.login-form .input-container label,
+.register-form .input-container label {
+  font-size: .7rem;
+  position: relative;
+  right: 5.5rem;
+  top: .2rem;
+}
+
+.login-form .input-container,
+.register-form .input-container {
+  margin-bottom: 2rem;
+}

@@ -15,6 +15,9 @@
   background-color: #2C2C2C;
   color: #FFFFFF;
   border: none;
+}
+
+.filter-left .searchBar {
   border-radius: 20px;
 }
 
@@ -36,7 +39,13 @@
   margin: 0 0 0 0;
 }
 
-.date-input, .sort-input {
+.filter-inputs label {
+  font-size: 0.7rem;
+  position: relative;
+  right: 3.5rem;
+}
+
+.date-input, .select-input {
   width: 150px;
 }
 
@@ -63,7 +72,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 0.5rem;
-  max-width: 60%;
+  max-width: 45%;
+  min-width: 25%;
 }
 
 /* Movie Card */
@@ -115,10 +125,6 @@
   padding: 0;
 }
 
-.movie-info .tags {
-
-}
-
 .movie-info .tag {
   background-color: #e31c25;
 }
@@ -157,10 +163,11 @@
   flex-direction: column;
 }
 
-.input-container label, .select-container label {
+.date-input label, .select-container label {
   font-size: .8rem !important;
   margin-bottom: 0.2rem !important;
-  margin-left: 4.2rem !important;
+  margin-left: 4.2rem;
+  right: -1rem;
 }
 
 .input-container input, .select-container select {
