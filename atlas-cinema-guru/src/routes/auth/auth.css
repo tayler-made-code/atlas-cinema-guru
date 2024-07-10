@@ -1,36 +1,42 @@
 /* Authentication Page Styles */
 
 body {
-  background-color: #222222;
+  background-color: #222222 !important;
 }
 
 .auth-container {
-  background-color: #FFFFFF;
-  max-width: 22rem;
-  margin: 22.5% auto;
-  width: 50%;
-  height: 50%;
+  background-color: #FFFFFF !important;
+  max-width: 22rem !important;
+  margin: 22.5% auto !important;
+  width: 50% !important;
+  height: 50% !important;
 }
 
 h1 {
-  font-family: 'Roboto', sans-serif;
-  font-size: .7rem;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: .7rem !important;
 }
 
 /* Login & Register Styles */
 
 .auth-buttons button {
-  margin-bottom: 2rem;
-  padding: .5rem 4.11rem;
+  margin-bottom: 2rem !important;
+  padding: .5rem 4.11rem !important;
 }
 
 .submit-button {
-  position: relative;
-  padding: .5rem 1rem;
-  margin-bottom: 1rem;
-  left: 6.5rem;
+  position: relative !important;
+  padding: .5rem 1rem !important;
+  margin-bottom: 1rem !important;
+  left: 6.5rem !important;
 }
 
 .submit-button:hover {
-  background-color: #E31C25;
+  background-color: #E31C25 !important;
 }
+
+.username-input, .password-input {
+  background-color: #FFFFFF !important;
+  color: #000000;
+}
+

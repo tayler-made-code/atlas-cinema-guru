@@ -53,3 +53,11 @@ input {
 
 /* SelectInput */
 
+.input-container select {
+  background-color: #2C2C2C;
+  border: none;
+  border-bottom: 1px solid #E31C25;
+  color: white;
+  padding: 0.5rem;
+}
+

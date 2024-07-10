@@ -11,26 +11,29 @@ export default function App() {
     const accessToken = localStorage.getItem('accessToken');
     
     if (accessToken) {
-      console.log('Access token found:', accessToken);
-      fetch('http://localhost:8000/api/auth/verify', {
+      fetch('http://localhost:8000/api/auth', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Authentication failed');
+        }
+        return response.json();
+      })
       .then(data => {
-        console.log('Verification response:', data);
         setIsLoggedIn(true);
-        setUserUsername(data.userName);
+        setUserUsername(data.username);
       })
       .catch(error => {
         console.error('Authentication error:', error);
         setIsLoggedIn(false);
+        localStorage.removeItem('accessToken');
       });
     } else {
-      console.log('No access token found');
+      setIsLoggedIn(false);
     }
   }, []);
 

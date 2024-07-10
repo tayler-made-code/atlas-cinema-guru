@@ -13,6 +13,7 @@ export default function SearchBar({ title, setTitle }) {
     <input
       type="text"
       value={title}
+      placeholder={title ? title : "Search Movies"}
       onChange={handleInput}
       icon={<FontAwesomeIcon icon={faSearch} style={{color: "#d3d6db",}} />}
     />

@@ -8,21 +8,38 @@ export default function Activity({ activity }) {
   };
 
   const formatActivity = (activity) => {
-    const userName = activity.user.username;
-    const title = activity.title.title;
+    const userName = activity.user ? activity.user.username : 'Unknown user';
+    const title = activity.title ? activity.title.title : 'Unknown title';
     const date = formatDate(activity.createdAt);
 
-    switch(activity.type) {
+    switch(activity.activityType) {
       case 'watchLater':
-        return `${userName} added ${title} to watch later - ${date}`;
+        return (
+          <>
+            <span className="red">{userName}</span> added <span className="red">{title}</span> to watch later - <span className="italics">{date}</span>
+          </>
+        );
       case 'favorite':
-        return `${userName} added ${title} to favorites - ${date}`;
+        return (
+          <>
+            <span className="red">{userName}</span> added <span className="red">{title}</span> to favorites - <span className="italics">{date}</span>
+          </>
+        );
       case 'removeFavorited':
-        return `${userName} removed ${title} from favorites - ${date}`;
+        return (
+          <>
+            <span className="red">{userName}</span> removed <span className="red">{title}</span> from favorites - <span className="italics">{date}</span>
+          </>
+        );
       case 'removeWatchLater':
-        return `${userName} removed ${title} from watch later - ${date}`;
+        return (
+          <>
+            <span className="red">{userName}</span> removed <span className="red">{title}</span> from watch later - <span className="italics">{date}</span>
+          </>
+        );
       default:
-        return 'Unknown activity';
+        console.log('Unknown activity:', activity);
+        return `Unknown activity: ${activity.activityType} - ${userName}, ${title}, ${date}`;
     }
   };
 

@@ -3,43 +3,40 @@ import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFolder, faStar, faClock, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import Activity from '../components/Activity'
-import { useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 
 export default function SideBar() {
-  const [selected, setSelected] = useState('Home');
   const [small, setSmall] = useState(true);
   const [activities, setActivities] = useState([]);
   const [showActivities, setShowActivities] = useState(false);
-
-  const navigate = useNavigate();
-
-  const setPage = (pageName) => {
-    setSelected(pageName);
-    switch(pageName) {
-      case 'Home':
-        navigate('/home');
-        break;
-      case 'Favorites':
-        navigate('/favorites');
-        break;
-      case 'Watch Later':
-        navigate('/watchlater');
-        break;
-      default:
-        navigate('/home');
-    }
-  };
+  const location = useLocation();
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/activity')
-      .then(response => {
+    const fetchActivities = async () => {
+      try {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+          throw new Error('Access token not found');
+        }
+        const response = await axios.get('http://localhost:8000/api/activity/', {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+          }
+        });
+
+        if (response.status !== 200) {
+          throw new Error(`LATESTS ACTIVITY ISSUE: ${response.status}`);
+        }
+
         setActivities(response.data);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching activities:', error);
-      });
+      }
+    };
+
+    fetchActivities();
   }, []);
 
   const handleMouseEnterSideBar = () => {
@@ -59,20 +56,26 @@ export default function SideBar() {
       onMouseLeave={handleMouseLeaveSideBar}
     >
       <ul className="navigation">
-        <li onClick={() => setPage('Home')} className={selected === 'Home' ? 'selected' : ''}>
-          <FontAwesomeIcon icon = {faFolder} />
-          {!small && <span>Home</span>}
-          {!small && selected === 'Home' && <FontAwesomeIcon icon = {faArrowRight} />}
+        <li className={location.pathname === '/home' ? 'selected' : ''}>
+          <Link to="/home">
+            <FontAwesomeIcon icon = {faFolder} />
+            {!small && <span>Home</span>}
+            {!small && location.pathname === '/home' && <FontAwesomeIcon icon = {faArrowRight} />}
+          </Link>
         </li>
-        <li onClick={() => setPage('Favorites')} className={selected === 'Favorites' ? 'selected' : ''}>
-          <FontAwesomeIcon icon = {faStar} />
-          {!small && <span>Favorites</span>}
-          {!small && selected === 'Favorites' && <FontAwesomeIcon icon = {faArrowRight} />}
+        <li className={location.pathname === '/favorites' ? 'selected' : ''}>
+          <Link to="/favorites">
+            <FontAwesomeIcon icon = {faStar} />
+            {!small && <span>Favorites</span>}
+            {!small && location.pathname === '/favorites' && <FontAwesomeIcon icon = {faArrowRight} />}
+          </Link>
         </li>
-        <li onClick={() => setPage('Watch Later')} className={selected === 'Watch Later' ? 'selected' : ''}>
-          <FontAwesomeIcon icon = {faClock} />
-          {!small && <span>Watch Later</span>}
-          {!small && selected === 'Watch Later' && <FontAwesomeIcon icon = {faArrowRight} />}
+        <li className={location.pathname === '/watchlater' ? 'selected' : ''}>
+          <Link to="/watchlater">
+            <FontAwesomeIcon icon = {faClock} />
+            {!small && <span>Watch Later</span>}
+            {!small && location.pathname === '/watchlater' && <FontAwesomeIcon icon = {faArrowRight} />}
+          </Link>
         </li>
       </ul>
       {!small && (
@@ -81,7 +84,7 @@ export default function SideBar() {
           {showActivities && (
             <ul className="activities">
               {activities.slice(0, 10).map((activity, index) => (
-                <Activity key={index} activity={activity} />
+                <Activity key={activity.id || index} activity={activity} />
               ))}
             </ul>
           )}

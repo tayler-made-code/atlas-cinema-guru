@@ -1,3 +1,11 @@
 li {
   list-style-type: none;
 }
+
+.red {
+  color: red;
+}
+
+.italics {
+  font-style: italic;
+}

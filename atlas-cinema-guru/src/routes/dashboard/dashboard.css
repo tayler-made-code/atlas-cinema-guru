@@ -1,0 +1,29 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.dashboard-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  color: #FFFFFF;
+  overflow-y: auto;
+}
+
+.home-page .tag {
+  border: 1px solid #E31C25;
+  color: #FFFFFF;
+}
+
+.page-title {
+  font-size: 64px;
+  text-decoration: underline;
+  text-decoration-color: #E31C25;
+}

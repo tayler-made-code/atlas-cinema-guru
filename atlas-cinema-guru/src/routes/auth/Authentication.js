@@ -12,22 +12,17 @@ export default function Authentication({ setIsLoggedIn, setUserUsername }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Submit Started:', { username, password });
 
     try {
       let response;
       if (_switch) {
-        console.log('In Login Section');
         response = await axios.post('http://localhost:8000/api/auth/login', { username, password });
       } else {
-        console.log('In Register Section');
         response = await axios.post('http://localhost:8000/api/auth/register', { username, password });
       }
 
-      console.log('Response: ', response.data);
-
-      const { token } = response.data;
-      localStorage.setItem('accessToken', token);
+      const { accessToken } = response.data;
+      localStorage.setItem('accessToken', accessToken);
       setUserUsername(username);
       setIsLoggedIn(true);  
     } catch (error) {
