@@ -74,8 +74,9 @@ export default function HomePage() {
         ))}
       </div>
       <Button
-        onClick={handleLoadMore}
         label="Load More.."
+        className="load-more-button"
+        onClick={handleLoadMore}
       />
     </div>
   );

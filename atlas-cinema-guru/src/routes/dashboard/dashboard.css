@@ -27,3 +27,14 @@
   text-decoration: underline;
   text-decoration-color: #E31C25;
 }
+
+.load-more-button {
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.load-more-button:hover {
+  background-color: #E31C25;
+}
