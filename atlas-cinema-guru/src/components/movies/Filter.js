@@ -5,7 +5,7 @@ import SearchBar from '../general/SearchBar'
 import SelectInput from '../general/SelectInput'
 import Tag from './Tag'
 
-export default function Filter({ minYear, setMinYear, maxYear, setMaxYear, sort, setSort, genre, setGenres, title, setTitle }) {
+export default function Filter({ minYear, setMinYear, maxYear, setMaxYear, sort, setSort, genres, setGenres, title, setTitle }) {
   return (
     <div className="filter">
       <div className="filter-left">
@@ -17,6 +17,11 @@ export default function Filter({ minYear, setMinYear, maxYear, setMaxYear, sort,
             className="date-input min-year"
             value={minYear}
             setValue={setMinYear}
+            inputAttributes={{
+              min: 1970,
+              max: 9999,
+              step: 1
+            }}
           />
           <Input 
             label="Max Date:"
@@ -24,6 +29,11 @@ export default function Filter({ minYear, setMinYear, maxYear, setMaxYear, sort,
             className="date-input max-year"
             value={maxYear}
             setValue={setMaxYear}
+            inputAttributes={{
+              min: 1970,
+              max: 9999,
+              step: 1
+            }}
           />
           <SelectInput
             label="Sort:"
@@ -45,7 +55,7 @@ export default function Filter({ minYear, setMinYear, maxYear, setMaxYear, sort,
               key={genre}
               genre={genre}
               setGenres={setGenres}
-              genres={genre}
+              genres={genres}
             />
           ))}
         </div>

@@ -56,27 +56,27 @@ export default function SideBar() {
       onMouseLeave={handleMouseLeaveSideBar}
     >
       <ul className="navigation">
-        <li className={location.pathname === '/home' ? 'selected' : ''}>
-          <Link to="/home">
+        <Link to="/home">
+          <li className={location.pathname === '/home' ? 'selected' : ''}>
             <FontAwesomeIcon icon = {faFolder} />
             {!small && <span>Home</span>}
             {!small && location.pathname === '/home' && <FontAwesomeIcon icon = {faArrowRight} />}
-          </Link>
-        </li>
-        <li className={location.pathname === '/favorites' ? 'selected' : ''}>
-          <Link to="/favorites">
+          </li>
+        </Link>
+        <Link to="/favorites">
+          <li className={location.pathname === '/favorites' ? 'selected' : ''}>
             <FontAwesomeIcon icon = {faStar} />
             {!small && <span>Favorites</span>}
             {!small && location.pathname === '/favorites' && <FontAwesomeIcon icon = {faArrowRight} />}
-          </Link>
-        </li>
-        <li className={location.pathname === '/watchlater' ? 'selected' : ''}>
-          <Link to="/watchlater">
+          </li>
+        </Link>
+        <Link to="/watchlater">
+          <li className={location.pathname === '/watchlater' ? 'selected' : ''}>
             <FontAwesomeIcon icon = {faClock} />
             {!small && <span>Watch Later</span>}
             {!small && location.pathname === '/watchlater' && <FontAwesomeIcon icon = {faArrowRight} />}
-          </Link>
-        </li>
+          </li>
+        </Link>
       </ul>
       {!small && (
         <div className="activities-section">

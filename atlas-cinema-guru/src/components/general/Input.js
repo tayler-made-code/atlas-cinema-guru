@@ -3,7 +3,15 @@ import './general.css';
 
 export default function Input({ label, type, className, value, setValue, icon, inputAttributes }) {
   const handleInput = (e) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    if (type === 'number') {
+      const numberValue = parseInt(newValue, 10);
+      if (!isNaN(numberValue)) {
+        setValue(numberValue);
+      }
+    } else {
+      setValue(newValue);
+    }
   };
 
   return (

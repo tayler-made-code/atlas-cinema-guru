@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import MovieCard from '../../components/movies/MovieCard'
 import Filter from '../../components/movies/Filter'
 import Button from '../../components/general/Button'
+import axios from 'axios'
 
 export default function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -16,18 +17,21 @@ export default function HomePage() {
   const loadMovies = useCallback(async (pageNum) => {
     try {
       const accessToken = localStorage.getItem('accessToken');
-      const response = await fetch(`http://localhost:8000/api/titles/advancedsearch?minYear=${minYear}&maxYear=${maxYear}&genres=${genres.join(',')}&title=${title}&sort=${sort}&page=${pageNum}`, {
-        method: 'GET',
+      const response = await axios.get('http://localhost:8000/api/titles/advancedsearch', {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
+        },
+        params: {
+          minYear,
+          maxYear,
+          genres: genres.join(','),
+          sort,
+          title,
+          page: pageNum
         }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch movies');
-      }
-
-      const data = await response.json();
+      const data = response.data;
 
       if (pageNum === 1) {
         setMovies(data.titles);
@@ -35,7 +39,7 @@ export default function HomePage() {
         setMovies(prevMovies => [...prevMovies, ...data.titles]);
       }
     } catch (error) {
-      console.error('Error loading movies:', error);
+      console.error('Error loading movies:', error.response ? error.response.data : error);
     }
   }, [minYear, maxYear, genres, title, sort]);
 
@@ -71,7 +75,7 @@ export default function HomePage() {
       </div>
       <Button
         onClick={handleLoadMore}
-        label="Load More"
+        label="Load More.."
       />
     </div>
   );

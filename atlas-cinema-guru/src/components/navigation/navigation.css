@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.top-header a {
+  text-decoration: none;
+}
+
 .top-header img {
   border-radius: 100%;
   border: 2px solid #E31C25;
@@ -23,6 +27,7 @@
   display: flex;
   align-items: center;
   color: #E31C25;
+  cursor: pointer;
 }
 
 .user-logout {
@@ -33,7 +38,14 @@
 }
 
 .title-div {
-  margin-left: 2.5rem;;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  cursor: pointer;
+}
+
+.title-div p {
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 /* Sidebar */
